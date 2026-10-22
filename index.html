@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfolio of S. Mathumitha, Computer Applications graduate interested in Python, web development and data analysis.">
+  <meta name="theme-color" content="#f7f3ff">
+  <title>S. Mathumitha | Portfolio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --purple: #9279d3;
+      --purple-dark: #7156b2;
+      --lavender: #f6f2ff;
+      --lavender-deep: #eee7ff;
+      --ink: #302943;
+      --muted: #777087;
+      --white: #ffffff;
+      --border: #e9e2f5;
+      --shadow: 0 14px 36px rgba(105, 79, 163, 0.09);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "DM Sans", sans-serif;
+      background: var(--white);
+      color: var(--ink);
+      line-height: 1.7;
+    }
+
+    a { text-decoration: none; color: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    button { font: inherit; }
+
+    .container {
+      width: min(1100px, 90%);
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(233, 226, 245, 0.9);
+    }
+
+    nav {
+      min-height: 74px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .logo {
+      flex-shrink: 0;
+      font-family: "Manrope", sans-serif;
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: -1px;
+    }
+
+    .logo span { color: var(--purple); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 19px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-size: 0.86rem;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--purple-dark); }
+
+    .nav-links .nav-contact {
+      color: var(--purple-dark);
+      border: 1px solid #ded2f7;
+      border-radius: 9px;
+      padding: 8px 13px;
+    }
+
+    .menu-toggle {
+      display: none;
+      background: var(--lavender);
+      color: var(--purple-dark);
+      border: 0;
+      border-radius: 9px;
+      padding: 7px 12px;
+      font-size: 1.3rem;
+      cursor: pointer;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 108px 0 100px;
+      background:
+        radial-gradient(ellipse at 90% 12%, #eee7ff 0%, transparent 36%),
+        linear-gradient(180deg, #fff 0%, #fcfaff 100%);
+    }
+
+    .hero-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(250px, 0.7fr);
+  align-items: center;
+  gap: 42px;
+}
+
+.hero-content {
+  max-width: 790px;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-photo-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-photo {
+  width: min(310px, 100%);
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: center top;
+  border: 8px solid white;
+  border-radius: 28px;
+  box-shadow: 0 18px 45px rgba(105, 79, 163, 0.16);
+  outline: 1px solid var(--border);
+}
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      background: var(--lavender);
+      color: var(--purple-dark);
+      border: 1px solid #e8dfff;
+      border-radius: 50px;
+      padding: 7px 14px;
+      font-size: 0.84rem;
+      font-weight: 700;
+      margin-bottom: 23px;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      background: #a28bdc;
+      border-radius: 50%;
+    }
+
+    h1, h2, h3 {
+      font-family: "Manrope", sans-serif;
+      line-height: 1.25;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.6rem, 6vw, 4.7rem);
+      font-weight: 800;
+      letter-spacing: -2.7px;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 span { color: var(--purple-dark); }
+
+    .hero-description {
+      max-width: 650px;
+      color: var(--muted);
+      font-size: 1.08rem;
+      margin-bottom: 29px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 13px;
+      flex-wrap: wrap;
+      margin-bottom: 27px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 19px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.93rem;
+      transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+
+    .btn-primary {
+      background: var(--purple-dark);
+      color: white;
+      box-shadow: 0 7px 18px rgba(113, 86, 178, 0.19);
+    }
+
+    .btn-primary:hover { background: #62479f; }
+
+    .btn-secondary {
+      border: 1px solid var(--border);
+      background: white;
+      color: var(--ink);
+    }
+
+    .btn-secondary:hover { box-shadow: var(--shadow); }
+
+    .hero-note { font-size: 0.9rem; color: var(--muted); }
+    .hero-note strong { color: var(--ink); }
+
+    section { scroll-margin-top: 82px; }
+    .section { padding: 82px 0; }
+    .section-soft { background: #fbf9ff; }
+
+    .section-heading { margin-bottom: 32px; }
+
+    .section-label {
+      display: inline-block;
+      color: var(--purple-dark);
+      text-transform: uppercase;
+      letter-spacing: 1.8px;
+      font-size: 0.75rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(1.85rem, 4vw, 2.55rem);
+      letter-spacing: -1.1px;
+      margin-bottom: 11px;
+    }
+
+    .section-heading p { color: var(--muted); max-width: 650px; }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 40px;
+      align-items: start;
+    }
+
+    .about-text p { color: var(--muted); margin-bottom: 16px; }
+
+    .about-highlight {
+      background: var(--lavender);
+      border: 1px solid #e8dfff;
+      border-radius: 18px;
+      padding: 27px;
+    }
+
+    .mini-line {
+      width: 42px;
+      height: 4px;
+      border-radius: 10px;
+      background: var(--purple);
+      margin-bottom: 19px;
+    }
+
+    .about-highlight h3 { font-size: 1.1rem; margin-bottom: 11px; }
+    .about-highlight p { color: var(--muted); font-size: 0.94rem; }
+    .about-highlight .detail-title { margin-top: 18px; }
+
+    .inline-tags, .skill-tags, .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .inline-tags { margin-top: 10px; }
+
+    .inline-tags span {
+      padding: 5px 9px;
+      background: #fff;
+      color: #6d55a6;
+      border: 1px solid #e7ddfb;
+      border-radius: 7px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 17px;
+    }
+
+    .skill-card {
+      padding: 23px;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      transition: transform 0.22s, box-shadow 0.22s, border-color 0.22s;
+    }
+
+    .skill-card:hover, .project-card:hover, .education-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+      border-color: #d8c9f5;
+    }
+
+    .project-symbol, .education-mark {
+      flex-shrink: 0;
+      display: grid;
+      place-items: center;
+      background: var(--lavender-deep);
+      color: var(--purple-dark);
+      font-family: "Manrope", sans-serif;
+      font-weight: 800;
+    }
+
+    .skill-card h3 { font-size: 1.02rem; margin-bottom: 8px; }
+    .skill-card p { color: var(--muted); font-size: 0.9rem; }
+    .skill-tags { margin-top: 12px; }
+
+    .skill-tags span {
+      padding: 6px 9px;
+      background: #f8f5ff;
+      color: #6d55a6;
+      border: 1px solid #eee7fb;
+      border-radius: 7px;
+      font-size: 0.8rem;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 21px;
+    }
+
+    .project-card {
+      min-width: 0;
+      padding: 27px;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 17px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      transition: transform 0.22s, box-shadow 0.22s, border-color 0.22s;
+    }
+
+    .project-symbol {
+      width: 44px;
+      height: 44px;
+      border-radius: 13px;
+      font-size: 1.15rem;
+      margin-bottom: 18px;
+    }
+
+    .project-card h3 { font-size: 1.16rem; margin-bottom: 11px; }
+    .project-card > p { color: var(--muted); font-size: 0.93rem; margin-bottom: 17px; }
+
+    .project-tags { margin-bottom: 19px; }
+
+    .project-tags span {
+      background: #f8f5ff;
+      border: 1px solid #ece4fb;
+      color: #6d55a6;
+      border-radius: 7px;
+      padding: 5px 9px;
+      font-size: 0.76rem;
+      font-weight: 600;
+    }
+
+    .project-link {
+      margin-top: auto;
+      color: var(--purple-dark);
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    .project-link:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+    .education-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 21px;
+      align-items: stretch;
+    }
+
+    .education-card {
+      min-width: 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 17px;
+      padding: 25px;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 17px;
+      transition: transform 0.22s, box-shadow 0.22s, border-color 0.22s;
+    }
+
+    .education-mark {
+      width: 47px;
+      height: 47px;
+      border-radius: 13px;
+      font-size: 1.05rem;
+    }
+
+    .education-card h3 { font-size: 1.04rem; margin-bottom: 8px; }
+    .education-card p { color: var(--muted); font-size: 0.91rem; margin-top: 4px; }
+
+    .contact-panel {
+      background: linear-gradient(135deg, #f7f3ff, #fbf9ff);
+      border: 1px solid #e8dfff;
+      border-radius: 22px;
+      padding: 47px 30px;
+      text-align: center;
+    }
+
+    .contact-panel h2 {
+      font-size: clamp(1.85rem, 4vw, 2.6rem);
+      letter-spacing: -1px;
+      margin-bottom: 13px;
+    }
+
+    .contact-panel > p { max-width: 570px; margin: 0 auto 24px; color: var(--muted); }
+
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 11px;
+    }
+
+    footer { padding: 23px 0; border-top: 1px solid var(--border); }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    footer p, footer a { color: var(--muted); font-size: 0.85rem; }
+    footer a:hover { color: var(--purple-dark); }
+
+    @media (max-width: 960px) {
+      .nav-links { gap: 12px; }
+      .nav-links a { font-size: 0.81rem; }
+      .skills-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 760px) {
+      .container { width: 90%; }
+      nav { min-height: 68px; }
+      .menu-toggle { display: block; }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 68px;
+        left: 0;
+        right: 0;
+        background: white;
+        padding: 21px 5%;
+        border-bottom: 1px solid var(--border);
+        flex-direction: column;
+        align-items: stretch;
+        gap: 16px;
+      }
+
+      .nav-links.open { display: flex; }
+      .nav-links a { display: block; font-size: 0.92rem; }
+      .nav-links .nav-contact { text-align: center; }
+      .hero { padding: 77px 0 72px; }
+      .hero-layout {
+  grid-template-columns: 1fr;
+  gap: 28px;
+}
+
+.hero-photo-wrap {
+  grid-row: 1;
+}
+
+.hero-photo {
+  width: 300px;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: center top;
+  border: 8px solid white;
+  border-radius: 50% 50% 0 0;
+  box-shadow: 0 18px 45px rgba(105, 79, 163, 0.16);
+  outline: 1px solid var(--border);
+}
+
+.hero-content {
+  max-width: 100%;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.hero-description {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-buttons {
+  justify-content: center;
+}
+      .hero h1 { letter-spacing: -1.6px; }
+      .section { padding: 64px 0; }
+      .about-grid { grid-template-columns: 1fr; gap: 25px; }
+      .project-grid, .education-grid { grid-template-columns: 1fr; }
+      .contact-panel { padding: 37px 20px; }
+    }
+
+    @media (max-width: 420px) {
+      .skills-grid { grid-template-columns: 1fr; }
+      .hero-buttons { flex-direction: column; align-items: stretch; }
+      .btn { width: 100%; }
+      .education-card { padding: 20px; gap: 13px; }
+      .project-card { padding: 23px; }
+      .footer-content { flex-direction: column; text-align: center; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="container" aria-label="Main navigation">
+      <a href="#home" class="logo">Mathumitha<span>.</span></a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navLinks">☰</button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#certifications">Certifications</a></li>
+        <li><a href="#contact" class="nav-contact">Contact ↗</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+  <div class="container">
+    <div class="hero-layout">
+
+      <div class="hero-content">
+        <div class="eyebrow">
+          <span class="status-dot"></span>
+          Computer Applications Graduate
+        </div>
+
+        <h1>Hi, I'm <span>S. Mathumitha.</span></h1>
+
+        <p class="hero-description">
+          I enjoy building practical applications and turning ideas into
+          simple, useful digital experiences. I'm exploring web development,
+          Python and data analysis, one project at a time.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="#projects" class="btn btn-primary">
+            Explore My Projects ↗
+          </a>
+
+          <a href="#contact" class="btn btn-secondary">
+            Get In Touch
+          </a>
+        </div>
+
+        <p class="hero-note">
+          Interested in
+          <strong>Python · Web Development · Data Analysis</strong>
+        </p>
+      </div>
+
+      <div class="hero-photo-wrap">
+        <img
+          src="Profile.png"
+          alt="S. Mathumitha"
+          class="hero-photo"
+        >
+      </div>
+
+    </div>
+  </div>
+</section>
+
+    <section class="section" id="about">
+      <div class="container">
+        <div class="about-grid">
+          <div class="about-text">
+            <div class="section-heading">
+              <span class="section-label">Get to know me</span>
+              <h2>Turning ideas into practical solutions.</h2>
+            </div>
+            <p>
+              I'm a Computer Applications graduate with an interest in Python development, web technologies
+              and data analysis. I enjoy learning how things work and applying that knowledge to practical projects.
+            </p>
+            <p>
+              From developing CreatorLite, a media editing web application, to analysing student performance data
+              with Python, I've explored different ways to solve problems through technology.
+            </p>
+            <p>
+              I'm looking forward to growing as a developer, improving my technical skills and contributing to
+              meaningful software projects.
+            </p>
+          </div>
+          <aside class="about-highlight">
+            <div class="mini-line"></div>
+            <h3>My approach</h3>
+            <p>Learn continuously. Build practically. Improve with every project.</p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft" id="skills">
+      <div class="container">
+        <div class="section-heading">
+          <span class="section-label">Technical toolkit</span>
+          <h2>Skills & Technologies</h2>
+          <p>Tools and technologies I've explored through learning and projects.</p>
+        </div>
+        <div class="skills-grid">
+          <article class="skill-card">
+            <h3>Programming</h3>
+            <div class="skill-tags"><span>Python</span><span>SQL</span></div>
+          </article>
+          <article class="skill-card">
+            <h3>Web Development</h3>
+            <div class="skill-tags"><span>Django</span><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
+          </article>
+          <article class="skill-card">
+            <h3>Data Analysis</h3>
+            <div class="skill-tags"><span>NumPy</span><span>pandas</span><span>Matplotlib</span></div>
+          </article>
+          <article class="skill-card">
+            <h3>Media Processing</h3>
+            <div class="skill-tags"><span>Pillow</span><span>FFmpeg</span></div>
+          </article>
+          <article class="skill-card">
+            <h3>Tools & Workflow</h3>
+            <div class="skill-tags"><span>VS Code</span><span>GitHub</span><span>SQLite</span></div>
+          </article>
+          <article class="skill-card">
+            <h3>Core Concepts</h3>
+            <div class="skill-tags"><span>CSV Processing</span><span>Data Visualisation</span><span>OOP Basics</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="projects">
+      <div class="container">
+        <div class="section-heading">
+          <span class="section-label">Selected work</span>
+          <h2>Projects I've Worked On</h2>
+          <p>A few projects that reflect my learning and practical experience.</p>
+        </div>
+        <div class="project-grid">
+          <article class="project-card">
+            <div class="project-symbol">✧</div>
+            <h3>CreatorLite</h3>
+            <p>A Django-based media editing web application for editing images, processing videos and creating custom thumbnails. Uses Pillow for image processing and FFmpeg for video processing.</p>
+            <div class="project-tags"><span>Python</span><span>Django</span><span>Pillow</span><span>FFmpeg</span><span>HTML/CSS/JS</span></div>
+            <a class="project-link" href="https://github.com/Madhucj06/CreatorLite" target="_blank" rel="noopener noreferrer">View on GitHub ↗</a>
+          </article>
+
+          <article class="project-card">
+            <div class="project-symbol">▥</div>
+            <h3>Student Data Analysis</h3>
+            <p>A Python project that reads student marks and attendance from CSV files, calculates average scores, identifies performance patterns and visualises results using charts.</p>
+            <div class="project-tags"><span>Python</span><span>NumPy</span><span>pandas</span><span>Matplotlib</span><span>CSV</span></div>
+            <a class="project-link" href="https://github.com/Madhucj06" target="_blank" rel="noopener noreferrer">View GitHub Profile ↗</a>
+          </article>
+
+          <article class="project-card">
+            <div class="project-symbol">◈</div>
+            <h3>Improved Data Security Using Multiple Secret Sharing</h3>
+            <p>An academic team project exploring secure message hiding and reconstruction using LSB steganography and XOR visual cryptography. The method splits secret information into shares that can be combined to reconstruct the original message.</p>
+            <div class="project-tags"><span>Python</span><span>Steganography</span><span>XOR Visual Cryptography</span></div>
+            <p class="project-link">Key features: Secret Hiding · Multi-Share Encryption · Secure Transmission · Message Reconstruction</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft" id="education">
+      <div class="container">
+        <div class="section-heading">
+          <span class="section-label">My background</span>
+          <h2>Education & Training</h2>
+          <p>My academic background and technical training.</p>
+        </div>
+        <div class="education-grid">
+          <article class="education-card">
+            <div class="education-mark">✦</div>
+            <div>
+              <h3>Bachelor of Computer Applications (BCA)</h3>
+              <p>Cauvery College for Women</p>
+              <p>Computer Applications</p>
+            </div>
+          </article>
+          <article class="education-card">
+            <div class="education-mark">Py</div>
+            <div>
+              <h3>Python and SQL Training</h3>
+              <p>Nebula Technology</p>
+              <p>Five-month course</p>
+              <p>Completed training in Python programming and SQL database fundamentals.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="certifications">
+      <div class="container">
+        <div class="section-heading">
+          <span class="section-label">Learning & Development</span>
+          <h2>Certifications & Experience</h2>
+          <p>Courses, internship and workshop experiences that support my professional growth.</p>
+        </div>
+        <div class="project-grid">
+          <article class="project-card">
+            <div class="project-symbol">✦</div>
+            <h3>Enhancing Software Skills and Personality</h3>
+            <p>Completed an NPTEL course focused on improving software-related skills and personal development.</p>
+            <div class="project-tags"><span>NPTEL</span><span>Software Skills</span><span>Personality Development</span></div>
+          </article>
+          <article class="project-card">
+            <div class="project-symbol">✧</div>
+            <h3>Body Language: Key to Professional Success</h3>
+            <p>Completed an NPTEL course exploring body language and its importance in professional communication.</p>
+            <div class="project-tags"><span>NPTEL</span><span>Communication</span><span>Professional Skills</span></div>
+          </article>
+          <article class="project-card">
+            <div class="project-symbol">⌘</div>
+            <h3>Software Development Internship</h3>
+            <p>Completed a 15-day internship at Extrazee Software Solution, gaining exposure to software development basics.</p>
+            <div class="project-tags"><span>Extrazee Software Solution</span><span>15 Days</span><span>Internship</span></div>
+          </article>
+          <article class="project-card">
+            <div class="project-symbol">☁</div>
+            <h3>Cloud Computing Workshop</h3>
+            <p>Attended a one-day workshop to learn about cloud computing concepts and their applications.</p>
+            <div class="project-tags"><span>Cloud Computing</span><span>Workshop</span><span>One Day</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="contact-panel">
+          <span class="section-label">Let's connect</span>
+          <h2>Have an opportunity in mind?</h2>
+          <p>I'm interested in connecting, learning from others and exploring opportunities in software and web development.</p>
+          <div class="contact-links">
+            <a class="btn btn-primary" href="mailto:smathumitha14@gmail.com">Email Me ↗</a>
+            <a class="btn btn-secondary" href="https://www.linkedin.com/in/mathumitha-s-45018031b/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+            <a class="btn btn-secondary" href="https://github.com/Madhucj06" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-content">
+      <a href="#home" class="logo">Mathumitha<span>.</span></a>
+      <p>Designed with care by S. Mathumitha · © <span id="year"></span></p>
+      <a href="#home">Back to top ↑</a>
+    </div>
+  </footer>
+
+  <script>
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+
+    menuToggle.addEventListener("click", function () {
+      const isOpen = navLinks.classList.toggle("open");
+      menuToggle.setAttribute("aria-expanded", String(isOpen));
+      menuToggle.textContent = isOpen ? "✕" : "☰";
+    });
+
+    document.querySelectorAll("#navLinks a").forEach(function (link) {
+      link.addEventListener("click", function () {
+        navLinks.classList.remove("open");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.textContent = "☰";
+      });
+    });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
